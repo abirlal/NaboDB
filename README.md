@@ -20,7 +20,10 @@ db1.addFieldValueByList('contact', ['1', 'abir', 'abirlalbiswas@gmail.com', '888
 db1.addFieldValueByList('contact', ['2', 'nabo', 'i.nabanita.neogy@gmail.com', '9876556789','Kolkata'])
 
 # to show fields of a table
-db1.showFields('contact')    
+db1.showFields('contact')   
+
+# get the fields in a array
+db1.getFields('contact')
 
 # to add a new field in a table
 db1.addField('contact', 'address') 
@@ -31,22 +34,24 @@ db1.updateDataByMap('contact', {'address':'Pune, India'}, {'id':'1'} )
 # to update value of a field in a row by a data id
 db1.updateDataByDataId('contact', {'email':'i-abirlal@email.com'}, 1)
 
-# to search value of a field(S) by map
+# to search value of a field(S) by map 
+* It returns the DataID list
 db1.searchByKeyValMap('contact', {'isActive':'1'})  # to search 
 
-
-db1.orderDataByField('contact', 'mob_no')
-db1.deleteDataByDataId('contact', 10)
-db1.updateDataByMap('contact', {'address':'Mumbai, India', 'mob_no':'987654321'}, {'id':'1','mob_no':'8884974436'} )
-
+# to search value of a field(S) like by map value
 print db1.searchLikeByKeyValMap ('contact', {'mob_no':'987654321'} )
 
-db1.showData('contact', [], db1.searchLikeByKeyValMap ('contact', {'mob_no':'888'} ))
-db1.getFields('contact')
-print db1.getData('contact',  db1.searchLikeByKeyValMap ('contact', {'mob_no':'888'} ))
+# order by some field
+db1.orderDataByField('contact', 'mob_no')
 
-#getting the max ID for data id filed 
+# delete data by DataID
+db1.deleteDataByDataId('contact', 10)
+
+# getting the max ID for data id filed 
 maxId = db1.maxDataInField('contact', 'id', 'INT')
 
-#to commit the changes 
+# to get data using search function 
+db1.getData('contact',  db1.searchLikeByKeyValMap ('contact', {'mob_no':'888'} ))
+
+# to commit the changes 
 db1.writeDB()
